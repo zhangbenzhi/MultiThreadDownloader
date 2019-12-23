@@ -24,6 +24,7 @@ import static cn.aigestudio.downloader.bizs.DLCons.Code.HTTP_OK;
 import static cn.aigestudio.downloader.bizs.DLCons.Code.HTTP_PARTIAL;
 import static cn.aigestudio.downloader.bizs.DLCons.Code.HTTP_SEE_OTHER;
 import static cn.aigestudio.downloader.bizs.DLCons.Code.HTTP_TEMP_REDIRECT;
+import static cn.aigestudio.downloader.bizs.DLError.ERROR_FILE_HAS_EXIT;
 import static cn.aigestudio.downloader.bizs.DLError.ERROR_OPEN_CONNECT;
 
 class DLTask implements Runnable, IDLThreadListener {
@@ -159,7 +160,7 @@ class DLTask implements Runnable, IDLThreadListener {
             throw new DLException("Can not create file");
         info.file = new File(info.dirPath, info.fileName);
         if (info.file.exists() && info.file.length() == info.totalBytes) {
-            Log.d(TAG, "The file which we want to download was already here.");
+            if (info.hasListener) info.listener.onError(ERROR_FILE_HAS_EXIT, "文件已存在");
             return;
         }
         if (info.hasListener) info.listener.onStart(info.fileName, info.realUrl, info.totalBytes);

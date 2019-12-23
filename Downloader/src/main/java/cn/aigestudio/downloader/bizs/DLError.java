@@ -21,6 +21,10 @@ public final class DLError {
      */
     public static final int ERROR_REPEAT_URL = 101;
     /**
+     * 文件已下载
+     */
+    public static final int ERROR_FILE_HAS_EXIT = 102;
+    /**
      * 无法获取真实下载地址
      */
     public static final int ERROR_CANNOT_GET_URL = 137;

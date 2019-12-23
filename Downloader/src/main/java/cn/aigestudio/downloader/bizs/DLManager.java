@@ -284,7 +284,7 @@ public final class DLManager {
      */
     public void dlCancel(String url) {
         dlStop(url);
-        DLInfo info;
+        /*DLInfo info;
         if (TASK_DLING.containsKey(url)) {
             info = TASK_DLING.get(url);
         } else {
@@ -296,7 +296,7 @@ public final class DLManager {
                 if (file.exists()) file.delete();
             }
         } catch (Exception e) {
-        }
+        }*/
         removeDLTask(url);
         DLDBManager.getInstance(context).deleteTaskInfo(url);
         DLDBManager.getInstance(context).deleteAllThreadInfo(url);
